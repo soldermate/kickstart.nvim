@@ -14,6 +14,7 @@ return {
             -- Can be a table or a function that
             -- returns a table (see below)
             command = { 'python' },
+            format = require('iron.fts.common').bracketed_paste,
           },
         },
         -- How the repl window will be displayed
@@ -27,6 +28,8 @@ return {
         send_file = '<space>rf',
         send_line = '<space>rl',
         send_paragraph = '<leader>rp',
+        cr = '<leader>r<enter>',
+        interrupt = '<leader>ri',
         exit = '<space>rq',
         clear = '<space>rx',
       },
@@ -48,15 +51,17 @@ return {
     local wk = require 'which-key'
 
     wk.add {
-      -- functions wihout commands exposed
+      -- functions without commands exposed
       { '<leader>r', group = '[R]epl' },
       { '<leader>rv', desc = '[R]epl Visual' },
       { '<leader>rf', desc = '[R]epl File' },
       { '<leader>rl', desc = '[R]epl Line' },
       { '<leader>rp', desc = '[R]epl Paragraph' },
+      { '<leader>r<enter>', desc = '[R]epl Carriage Return' },
+      { '<leader>ri', desc = '[R]epl Interrupt' },
       { '<leader>rq', desc = '[R]epl Quit' },
       { '<leader>rx', desc = '[R]epl Clear' },
-      -- functions wih commands exposed
+      -- functions with commands exposed
       { '<leader>ro', desc = '[R]epl Open' },
       { '<leader>rr', desc = '[R]epl Restart' },
       { '<leader>rF', desc = '[R]epl Focus' },
