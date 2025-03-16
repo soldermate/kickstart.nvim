@@ -1,5 +1,5 @@
 return {
-  'hkupty/iron.nvim',
+  'Vigemus/iron.nvim',
   config = function(plugins, opts)
     local iron = require 'iron.core'
     local view = require 'iron.view'
