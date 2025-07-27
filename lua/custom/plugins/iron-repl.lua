@@ -13,7 +13,7 @@ return {
           python = {
             -- Can be a table or a function that
             -- returns a table (see below)
-            command = { 'python' },
+            command = { 'ipython' },
             format = require('iron.fts.common').bracketed_paste,
           },
         },
