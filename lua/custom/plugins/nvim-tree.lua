@@ -1,5 +1,3 @@
--- Save this file as ~/.config/nvim/lua/plugins/nvim-tree.lua (or similar)
-
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = {
@@ -21,10 +19,21 @@ return {
     vim.g.loaded_netrwPlugin = 0
 
     require('nvim-tree').setup {
+      -- Custom keymappings for splits
+      on_attach = function(bufnr)
+        local api = require 'nvim-tree.api'
+
+        -- Default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- Custom keymappings for splits
+        vim.keymap.set('n', 'v', api.node.open.horizontal, { buffer = bufnr, desc = 'Open: Horizontal Split' })
+        vim.keymap.set('n', 's', api.node.open.vertical, { buffer = bufnr, desc = 'Open: Vertical Split' })
+      end,
       -- Configure the NvimTree window itself
       view = {
         width = 30, -- Set a fixed width for the tree sidebar
-        relativenumber = true, -- Show relative line numbers within the tree
+        relativenumber = false, -- Show relative line numbers within the tree
         side = 'left', -- Position the tree on the left (default)
       },
       -- Configure how files are opened from the tree
