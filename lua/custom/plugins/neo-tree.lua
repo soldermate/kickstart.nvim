@@ -1,24 +1,27 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  version = '*',
+  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'nvim-tree/nvim-web-devicons', -- Required for file icons
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
-  keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-  },
-  opts = {
-    filesystem = {
-      hijack_netrw_behaviour = 'enabled',
+  -- Only call the setup function
+  config = function()
+    require('neo-tree').setup {
+      -- Your Neo-tree settings here
       window = {
-        mappings = {
-          ['\\'] = 'close_window',
-          ['<tab>'] = 'open_drop',
-        },
+        -- For example, if you had this, make sure it's false or removed:
+        open_on_startup = false,
       },
-    },
-  },
+      filesystem = {
+        -- This is where you might configure the default root
+        -- For example, if you set it to the current directory, it will open there
+        -- You usually want this, but it doesn't *force* opening.
+        -- path = vim.fn.getcwd(),
+      },
+      -- ... other configurations
+    }
+  end,
 }

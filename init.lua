@@ -1,6 +1,6 @@
--- Disable netrw because we are using neotree instead
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- Disable netrw completely
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 
 -- use zsh login shell
 vim.opt.shell = '/bin/zsh'
@@ -31,12 +31,9 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+--  See `:help 'clipboard'
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -773,8 +770,6 @@ require('lazy').setup({
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
 
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
@@ -782,10 +777,11 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  require 'custom.plugins.neo-tree',
+  -- require 'custom.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'custom.plugins.iron-repl',
   require 'custom.plugins.claude-code',
+  require 'custom.plugins.nvim-tree',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
