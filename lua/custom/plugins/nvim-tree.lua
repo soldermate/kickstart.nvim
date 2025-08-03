@@ -100,11 +100,24 @@ return {
     -- This is a common preference, but can sometimes be finicky.
     vim.api.nvim_create_autocmd('QuitPre', {
       callback = function()
-        -- Get all windows in the current tabpage
-        local windows = vim.api.nvim_tabpage_list_wins(0)
+        -- Safely handle potential race conditions during shutdown
+        local ok, windows = pcall(vim.api.nvim_tabpage_list_wins, 0)
+        if not ok then
+          return -- Skip if TUI is already shutting down
+        end
+        
         -- Check if the only remaining window is NvimTree
-        if #windows == 1 and vim.api.nvim_win_get_buf(windows[1]) == require('nvim-tree.api').tree.get_bufnr() then
-          vim.cmd 'NvimTreeClose'
+        if #windows == 1 then
+          local ok_buf, buf = pcall(vim.api.nvim_win_get_buf, windows[1])
+          if ok_buf then
+            local ok_tree, tree_buf = pcall(function()
+              return require('nvim-tree.api').tree.get_bufnr()
+            end)
+            if ok_tree and buf == tree_buf then
+              -- Use pcall to safely close nvim-tree
+              pcall(vim.cmd, 'NvimTreeClose')
+            end
+          end
         end
       end,
     })
