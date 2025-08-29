@@ -747,6 +747,9 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  { -- syntax highlighting for scilab
+    'vim-scripts/scilab.vim',
+  },
 
   require 'custom.plugins.colour-theme',
   require 'custom.plugins.iron-repl',
