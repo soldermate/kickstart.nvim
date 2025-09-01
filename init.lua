@@ -6,6 +6,34 @@ vim.g.loaded_netrwPlugin = 0
 vim.opt.shell = '/bin/zsh'
 vim.opt.shellcmdflag = '-lic'
 
+--	For the Win32 GUI					*E244* *E245*
+--	- takes these options in the font name:
+--		hXX - height is XX (points, can be floating-point)
+--		wXX - width is XX (points, can be floating-point)
+--		b   - bold
+--		i   - italic
+--		u   - underline
+--		s   - strikeout
+--		cXX - character set XX.  Valid charsets are: ANSI, ARABIC,
+--		      BALTIC, CHINESEBIG5, DEFAULT, EASTEUROPE, GB2312, GREEK,
+--		      HANGEUL, HEBREW, JOHAB, MAC, OEM, RUSSIAN, SHIFTJIS,
+--		      SYMBOL, THAI, TURKISH, VIETNAMESE ANSI and BALTIC.
+--		      Normally you would use "cDEFAULT".
+--
+--	  Use a ':' to separate the options.
+--	- A '_' can be used in the place of a space, so you don't need to use
+--	  backslashes to escape the spaces.
+--	- Examples: >vim
+--	    set guifont=courier_new:h12:w5:b:cRUSSIAN
+--	    set guifont=Andale_Mono:h7.5:w4.5
+
+-- GUI specific config
+if vim.g.neovide then
+  --vim.o.guifont = 'cascadia_mono:h10'
+  --vim.o.guifont = 'commitmono_nerd_font_mono:h10'
+  vim.o.guifont = 'droidsansm_nerd_font_mono:h11'
+end
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
