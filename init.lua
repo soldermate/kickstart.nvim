@@ -32,6 +32,11 @@ if vim.g.neovide then
   --vim.o.guifont = 'cascadia_mono:h10'
   --vim.o.guifont = 'commitmono_nerd_font_mono:h10'
   vim.o.guifont = 'droidsansm_nerd_font_mono:h11'
+
+  vim.g.neovide_padding_top = 5
+  vim.g.neovide_padding_bottom = 5
+  vim.g.neovide_padding_right = 5
+  vim.g.neovide_padding_left = 5
 end
 
 -- Set <space> as the leader key
