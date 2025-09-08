@@ -16,6 +16,10 @@ return {
             command = { 'ipython' },
             format = require('iron.fts.common').bracketed_paste,
           },
+          scilab = {
+            command = { 'scilab-adv-cli' },
+            format = require('iron.fts.common').newline,
+          },
         },
         -- How the repl window will be displayed
         -- See below for more information
